@@ -5,8 +5,16 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import SearchIcon from '@material-ui/icons/Search';
 import React, {useState, useEffect} from 'react'
 import ChatList from './components/ChatList';
+import ChatIntro from './components/ChatIntro';
+import ChatWindow from './components/ChatWindow'
 function App() {
-      const [chatlist, setChatList] = useState([{},{},{},{},{},{},{},{},{},{},{},{}]);
+      const [chatlist, setChatList] = useState([
+        {chatId:1, title: 'fulano de tal', image:"https://www.w3schools.com/howto/img_avatar2.png"},
+        {chatId:2, title: 'Beltrano de tal', image:"https://www.w3schools.com/howto/img_avatar2.png"},
+        {chatId:3, title: 'Bigail de tal', image:"https://www.w3schools.com/howto/img_avatar2.png"},
+        {chatId:4, title: 'Mikail de tal', image:"https://www.w3schools.com/howto/img_avatar2.png"},
+      ]);
+      const [activeChat, setActiveChat] = useState({});
 
   return (
       <div class='app-window'>
@@ -43,6 +51,9 @@ function App() {
                 {chatlist.map((item, key) =>(
                   <ChatList
                     key={key}
+                    data={item}
+                    active={activeChat.chatId === chatlist[key].chatId}
+                    onClick={()=>setActiveChat(chatlist[key])}
                   />
                 ))}
               
@@ -51,7 +62,15 @@ function App() {
 
         </div>
         <div className="contentarea">
-        ...
+         {activeChat.chatId !== undefined &&
+            <ChatWindow />
+          
+          }
+          {activeChat.chatId === undefined &&
+            <ChatIntro />
+          }         
+
+          
 
         </div>
 
