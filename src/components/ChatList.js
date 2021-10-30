@@ -1,13 +1,13 @@
 import React from 'react'
 import './chatListItem.css'
 
-export default function ChatList() {
+export default function ChatList({onClick,active, data}) {
     return (
-        <div class="chatListItem">
-            <img className="chatListItem--avatar" src="https://www.w3schools.com/howto/img_avatar2.png" alt="" />
+        <div class={`chatListItem ${active ?'active': ''}`} onClick={onClick}>
+            <img className="chatListItem--avatar" src={data.image} alt="" />
             <div className="chatListItem--lines">
                 <div className="chatListItem--line">
-                    <div className="chatListItem--name">Henrique Cezar</div>
+                    <div className="chatListItem--name">{data.title}</div>
                     <div className="chatListItem--date">19:00</div>
 
 
